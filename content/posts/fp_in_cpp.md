@@ -40,7 +40,7 @@ int main()
 > Above is a platter of functional programming capabilities in C++. You can see several languages features on display: const keyword, lambdas, ranges, and higher order functions. Note: *Must run with C++23, and `std::ranges::to<>()` is only available in the latest version of msvc as of this writing.*
 > 
 
-C++ is a powerful language with support for many paradigms of programming. The tools the language gives you allow you to shape your code however you like (occasional awkwardness notwithstanding). In recent time, C++ has gotten increased support for functional programming. In this article, I will summarize the main points from reading the book “Functional Programming in C++” in hopes that this can be good quick reference for anyone wishing to learn the topic. 
+C++ is a powerful language with support for many paradigms of programming. The tools the language gives you allow you to shape your code almost however you like. In recent time, C++ has gotten increased support for functional programming. In this article, I will summarize the main points from reading the book [Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus) in hopes that this can be good quick reference for anyone wishing to learn the topic. 
 
 # Contents
 
@@ -59,11 +59,11 @@ A **pure function** is a function that:
 - Does not perform side-effects (such as I/O)
 - Given the same arguments, produces the same return value every time it’s called
 
-You can use pure functions in any language but different languages encourage them and facilitate them to differing degrees. Pure functions are useful because they are extremely testable, easier to reason about, and easier to debug. They also work well with higher order functions which will allow you to represent your solution as a simple instance of an abstract solution. 
+You can use pure functions in any language but different languages encourage and facilitate them to differing degrees. Pure functions are useful because they are extremely testable, easier to reason about, and easier to debug. They also work well with higher order functions (functions that take other functions as arguments). 
 
 # *Const* Keyword
 
-The `const` keyword has been around for a long time and was introduced to both C and C++. It statically guarantees that the value will be **immutable**. Immutability and functional programming go hand-in-hand because we favor writing pure functions. 
+The `const` keyword has been around for a long time and was introduced to both C and C++. It statically guarantees that the value will be **immutable**. Immutability and functional programming go hand-in-hand because we favor writing pure functions where no arguments can be mutated. 
 
 ```cpp
 const int x = 1;
@@ -107,7 +107,7 @@ y = &z; // fails
 
 Now this code fails because `y` is labeled as a “constant pointer to a constant int”. 
 
-As verbose as it is, I suggest using `const` keyword in every situation *unless* you know specifically that you intend to mutate a variable. In that situation, you should think hard about whether or not it needs to be mutated and if the algorithm calls for it. 
+As verbose as it may be, it might be worth using `const` keyword in every situation *unless* you know specifically that you intend to mutate a variable. When you think that a variable might not need to be const, it's a good time to think hard about whether or not it needs to be mutated and if the algorithm calls for it. 
 
 This will help you avoid the bugs caused by something changing when it wasn’t supposed to. Also, it will reduce cognitive load to know that a variable will refer to the same value throughout its lifetime. 
 
@@ -115,7 +115,7 @@ This will help you avoid the bugs caused by something changing when it wasn’t 
 
 # Lambdas
 
-A “lambda” is simply a name for an “anonymous function” (that is a function with no name). Languages with first-class functions let us treat them like values (or objects) that can be passed as parameters, returned from other functions, or assigned to variables. Lambda expressions in C++ are a little awkward (but they’re better than nothing). 
+A “lambda” is simply a name for an “anonymous function” (a function with no name). Languages with first-class functions let us treat them like values (or objects) that can be passed as parameters, returned from other functions, or assigned to variables. Lambda expressions in C++ look unique compared to other languages. 
 
 ```cpp
 [](const int i) { return 0 == i % 2; };
@@ -129,7 +129,7 @@ auto const even = [](const int i) { return 0 == i % 2; };
 
 Here we use the `auto` keyword to infer the type because lambda types in C++ are a little complicated. 
 
-Under the hood, lambda’s compile down to a **functor** which is an object whose class has overridden the `()` operator. In other words, it’s an object that that can be called like a function. 
+Under the hood, lambdas compile down to a **functor** which is an object whose class has overridden the `()` operator. In other words, it’s an object that that can be called like a function. 
 
 When capturing identifiers from the surrounding lexical scope, it’s important to take **move semantics** into account (I.e. deciding whether the lambda takes ownership of the memory of the captured identifier or simply receives a copy or reference). Lambdas will be especially useful when using functions that take other functions as an argument. 
 
@@ -193,7 +193,7 @@ auto squared_evens = std::views::transform(evens, square);
 
 Here, `squared_evens` is a view into the original vector where we only see the even elements after they have been squared. 
 
-So how do we get a new vector? Well, this brings up a very important point: views are **lazy**. This means that even after calling all these standard algorithms, we still have not invoked the `even` function or the `sqaure` function on a single element. It’s only when we ask for a value from the range that an element will get sent down the pipeline where it is first filtered and then transformed. 
+So how do we get a new vector? Well, this brings up a very important point: views are **lazy**. This means that even after calling all these standard algorithms, we still have not invoked the `even` function or the `sqaure` function on a single element. It’s only when we *ask* for a value from the range that an element will get sent down the pipeline where it is first filtered and then transformed. 
 
 ```cpp
 auto even = [](int i) { return 0 == i % 2; };
@@ -232,7 +232,7 @@ for (int i : ar | std::views::filter(even) | std::views::transform(square)) {
 }
 ```
 
-In one expression (`ar | std::views::filter(even) | std::views::transform(sqaure)` ) we created our view that filters even elements and squares them. You can quite easily mentally visualize the `ar` being passed off to `filter` and then the result of that being passed off to `transform`. 
+In one expression (`ar | std::views::filter(even) | std::views::transform(sqaure)` ) we created our view that filters even elements and squares them. You can quite easily mentally visualize the `ar` being passed off to `filter` and then the result of that being passed off to `transform`. Those familiar with the `|` pipe operator in Unix/Linux or the `|>` operator in languages like F# and Elm will find this to be quite natural. 
 
 Overall, ranges, views, and standard library functions are a great way to work with a variety of collection types at a higher level of abstraction while still maintaining C++’s standard for performance. 
 
