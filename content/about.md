@@ -7,7 +7,8 @@ draft: false
 # Hello world!
 
 My name is Taylor Allred and I am a software developer and programming language enthusiast. 
-I grew up in Vermont and did my undergrad and Masters in Utah, and I'm currently living in Salt Lake City, UT. 
+I grew up in Vermont and then moved to Utah to do a Bachelors in Computer Science at Brigham Young University and then a Masters in CS at the University of Utah.  
+I'm currently living in Salt Lake City. 
 I am a husband and father to two boys. 
 I love building delightful applications, thinking about code design, playing video games, and listening to Japanese City Pop. 
 
