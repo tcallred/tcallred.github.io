@@ -42,14 +42,14 @@ int main()
 
 C++ is a powerful language with support for many paradigms of programming. The tools the language gives you allow you to shape your code almost however you like. In recent time, C++ has gotten increased support for functional programming. In this article, I will summarize the main points from reading the book [Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus) in hopes that this can be good quick reference for anyone wishing to learn the topic. 
 
-# Contents
+## Contents
 
 - Pure functions
 - `const` keyword
 - Lambdas
 - Ranges/views
 
-# Pure Functions
+## Pure Functions
 
 A **pure function** is a function that: 
 
@@ -61,7 +61,7 @@ A **pure function** is a function that:
 
 You can use pure functions in any language but different languages encourage and facilitate them to differing degrees. Pure functions are useful because they are extremely testable, easier to reason about, and easier to debug. They also work well with higher order functions (functions that take other functions as arguments). 
 
-# *Const* Keyword
+## *Const* Keyword
 
 The `const` keyword has been around for a long time and was introduced to both C and C++. It statically guarantees that the value will be **immutable**. Immutability and functional programming go hand-in-hand because we favor writing pure functions where no arguments can be mutated. 
 
@@ -113,7 +113,7 @@ This will help you avoid the bugs caused by something changing when it wasn’t 
 
 [https://en.cppreference.com/w/cpp/language/cv](https://en.cppreference.com/w/cpp/language/cv)
 
-# Lambdas
+## Lambdas
 
 A “lambda” is simply a name for an “anonymous function” (a function with no name). Languages with first-class functions let us treat them like values (or objects) that can be passed as parameters, returned from other functions, or assigned to variables. Lambda expressions in C++ look unique compared to other languages. 
 
@@ -135,7 +135,7 @@ When capturing identifiers from the surrounding lexical scope, it’s important 
 
 [https://en.cppreference.com/w/cpp/language/lambda](https://en.cppreference.com/w/cpp/language/lambda)
 
-# Ranges and Views
+## Ranges and Views
 
 First, let’s review what an **iterator** is. In C++, it’s common to implement all kinds of data structures (trees, maps, sets, queues, etc.) but you would like to be able to perform operations on each element of the structure in sequence like you would with a simple array. C++ commonly uses the iterator pattern to solve this problem. Iterators are a generic way to operate on a sequence of elements inside any data structure. 
 
@@ -238,6 +238,6 @@ Overall, ranges, views, and standard library functions are a great way to work w
 
 [https://en.cppreference.com/w/cpp/ranges](https://en.cppreference.com/w/cpp/ranges). 
 
-# Conclusion
+## Conclusion
 
 This has been a whirlwind tour of some of the features of modern C++ that facilitate functional programming. C++ at its core has traditionally relied heavily on mutation and side-effects to get work done. However, with recent releases of the language we have seen a gradual shift towards more concise and functional code. At the end of the day, programming functionally in any language will help you separate calculations (pure functions) from actions (side-effects/mutation) and that will make your code easier to reason about, refactor, and test.
