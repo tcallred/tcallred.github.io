@@ -4,7 +4,14 @@ date: 2023-05-10T21:42:44-06:00
 draft: false
 ---
 
-# A Stack Based Language
+- [A Stack-Based Language](#a-stack-based-language) `rust` `programming langauge`
+- [Dragonball Live](#dragonball-live) `elixir` `game`
+- [FloatTracker.jl](#floattrackerjl) `julia` `research`
+- [Foust](#foust) `f#` `game`
+- [Santorini](#santorini) `ocaml` `ai`
+- [GameDuino](#gameduino) `arduino` `c++` `game`
+
+# A Stack-Based Language
 **Repo**: https://github.com/tcallred/a-stack-based-language
 
 A simple programming language that is a mix between [APL](https://tryapl.org/) and [Forth](https://www.forth.com/forth/). 
